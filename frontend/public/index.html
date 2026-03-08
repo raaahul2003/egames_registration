@@ -358,7 +358,7 @@ footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px so
           <div class="upi-box">
             <div>
               <div style="font-size:0.75rem;color:var(--text-dim);letter-spacing:0.1em;margin-bottom:4px;">UPI PAYMENT ID</div>
-              <div class="upi-id">raj319720-1@okaxis</div>
+              <div class="upi-id">7994699455@jio</div>
             </div>
             <button type="button" class="copy-btn" onclick="copyUPI(this)"><i class="fas fa-copy"></i> COPY</button>
           </div>
@@ -412,7 +412,7 @@ footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px so
   <!-- <div class="footer-dept">Department of Computer Science & Engineering</div> -->
   <div class="footer-contacts">
     <div class="footer-contact"><i class="fas fa-phone"></i> +91 85909 95852</div>
-    <div class="footer-contact"><i class="fas fa-envelope"></i> ccv22cs000@gmail.com</div>
+    <div class="footer-contact"><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e7848491d5d58494d7d7d7a7808a868e8bc984888a">[email&#160;protected]</a></div>
     <div class="footer-contact"><i class="fas fa-map-marker-alt"></i> Campus, Valanchery</div>
   </div>
   <div class="footer-bottom">© 2026 E-Games Tournament · All Rights Reserved · Organized by College Club</div>
@@ -434,9 +434,11 @@ footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px so
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── CONFIG: Change this to your deployed backend URL ─────────
-const API_BASE = 'https://egames-registration.onrender.com/api';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'
+  : (window.location.origin + '/api');
 
   //   window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   // ? 'http://localhost:5000/api'
@@ -452,7 +454,7 @@ let currentPay = 'upi';
 // QR Code
 try {
   new QRCode(document.getElementById('qrcode'), {
-    text:'upi://pay?pa=collegeevents@upi&pn=EGames+Tournament&cu=INR',
+    text:'upi://pay?pa=7994699455@jio&pn=EGames+Tournament&cu=INR',
     width:120,height:120,colorDark:'#000',colorLight:'#fff',
     correctLevel:QRCode.CorrectLevel.H
   });
@@ -496,7 +498,7 @@ function handleFile(e) {
 }
 
 function copyUPI(btn) {
-  navigator.clipboard.writeText('collegeevents@upi').then(() => {
+  navigator.clipboard.writeText('7994699455@jio').then(() => {
     btn.innerHTML = '<i class="fas fa-check"></i> COPIED!'; btn.classList.add('copied');
     setTimeout(() => { btn.innerHTML='<i class="fas fa-copy"></i> COPY'; btn.classList.remove('copied'); }, 2000);
   });
@@ -615,11 +617,4 @@ if (dz) {
   dz.addEventListener('dragover', e => { e.preventDefault(); dz.style.borderColor='var(--neon-cyan)'; });
   dz.addEventListener('dragleave', () => dz.style.borderColor='');
   dz.addEventListener('drop', e => {
-    e.preventDefault(); dz.style.borderColor='';
-    const f = e.dataTransfer.files[0];
-    if (f) { document.getElementById('screenshotFile').files = e.dataTransfer.files; document.getElementById('fileName').textContent = '✅ ' + f.name; }
-  });
-}
-</script>
-</body>
-</html>
+    e.preventDefault(); dz.style.borderColor=
