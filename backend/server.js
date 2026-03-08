@@ -14,14 +14,25 @@ const app  = express();
 const PORT = process.env.PORT || 5000;
 
 // ── CORS ────────────────────────────────────────────────────
+const cors = require("cors");
+
 app.use(cors({
   origin: [
-    process.env.FRONTEND_URL || 'http://localhost:3000',
-    'http://localhost:5000',
-    'http://127.0.0.1:5500'  // Live Server (VS Code)
+    "https://egames-registration-1.onrender.com",
+    "http://localhost:3000"
   ],
-  credentials: true
+  methods: ["GET","POST","PUT","DELETE","PATCH"],
+  allowedHeaders: ["Content-Type","Authorization"]
 }));
+
+// app.use(cors({
+//   origin: [
+//     process.env.FRONTEND_URL || 'http://localhost:3000',
+//     'http://localhost:5000',
+//     'http://127.0.0.1:5500'  // Live Server (VS Code)
+//   ],
+//   credentials: true
+// }));
 
 // ── Body Parsers ─────────────────────────────────────────────
 app.use(express.json({ limit: '10mb' }));
