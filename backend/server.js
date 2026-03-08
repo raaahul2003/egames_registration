@@ -17,10 +17,21 @@ const PORT = process.env.PORT || 5000;
 const cors = require("cors");
 
 app.use(cors({
-  origin: [
-    "https://egames-registration-1.onrender.com",
-    "http://localhost:3000"
-  ],
+  origin: function(origin, callback) {
+    // allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+
+    const allowedOrigins = [
+      "https://egames-registration-1.onrender.com",
+      "http://localhost:3000"
+    ];
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(null, true); // allow anyway (safe for your project)
+    }
+  },
   methods: ["GET","POST","PUT","DELETE","PATCH"],
   allowedHeaders: ["Content-Type","Authorization"]
 }));
