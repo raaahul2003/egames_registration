@@ -34,7 +34,6 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/uploads', express.static(path.join(__dirname, process.env.UPLOAD_DIR || 'uploads')));
 
 // ── Rate Limiting ────────────────────────────────────────────
-const rateLimit = require("express-rate-limit");
 
 const registrationLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
