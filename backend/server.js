@@ -15,26 +15,7 @@ const PORT = process.env.PORT || 5000;
 
 // ── CORS ────────────────────────────────────────────────────
 const cors = require("cors");
-
-app.use(cors({
-  origin: function(origin, callback) {
-    // allow requests with no origin (mobile apps, curl, etc.)
-    if (!origin) return callback(null, true);
-
-    const allowedOrigins = [
-      "https://egames-registration-1.onrender.com",
-      "http://localhost:3000"
-    ];
-
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(null, true); // allow anyway (safe for your project)
-    }
-  },
-  methods: ["GET","POST","PUT","DELETE","PATCH"],
-  allowedHeaders: ["Content-Type","Authorization"]
-}));
+app.use(cors());
 
 // app.use(cors({
 //   origin: [
@@ -53,11 +34,14 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/uploads', express.static(path.join(__dirname, process.env.UPLOAD_DIR || 'uploads')));
 
 // ── Rate Limiting ────────────────────────────────────────────
+const rateLimit = require("express-rate-limit");
+
 const registrationLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 min
-  max: 10, // max 10 registrations per IP per window
-  message: { success: false, message: 'Too many requests. Please try again later.' }
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 100, // allow many attempts
 });
+
+app.use("/api/registrations", registrationLimiter);
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
