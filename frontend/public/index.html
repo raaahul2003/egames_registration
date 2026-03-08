@@ -436,9 +436,11 @@ footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px so
 
 <script>
 // ── CONFIG: Change this to your deployed backend URL ─────────
-const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? 'http://localhost:5000/api'
-  : '/api'; // same-origin when deployed together
+const API_BASE = 'https://egames-registration.onrender.com/api';
+
+  //   window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  // ? 'http://localhost:5000/api'
+  // : '/api'; // same-origin when deployed together
 
 const FEE_MAP = {
   'Mini Militia - Team of 4 - ₹80': { fee:'₹80', amount:80, isTeam:true },
