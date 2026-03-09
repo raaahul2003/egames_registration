@@ -3,174 +3,181 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-Games Tournament 2025 | College Esports Championship</title>
+<title>E-Games Tournament 2026 | MGM College Esports Championship</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 :root {
-  --neon-cyan: #00f5ff; --neon-purple: #bf00ff; --neon-green: #00ff88;
-  --neon-orange: #ff6b00; --dark-bg: #060812; --card-bg: #0d1117;
-  --card-border: #1a2035; --surface: #111827; --surface2: #161f2e;
-  --text: #e8eaf6; --text-dim: #8892a4;
-  --font-display: 'Orbitron', monospace;
-  --font-body: 'Rajdhani', sans-serif;
-  --font-mono: 'Share Tech Mono', monospace;
+  --neon-cyan:#00f5ff; --neon-purple:#bf00ff; --neon-green:#00ff88;
+  --neon-orange:#ff6b00; --dark-bg:#060812; --card-bg:#0d1117;
+  --card-border:#1a2035; --surface:#111827;
+  --text:#e8eaf6; --text-dim:#8892a4;
+  --font-display:'Orbitron',monospace;
+  --font-body:'Rajdhani',sans-serif;
+  --font-mono:'Share Tech Mono',monospace;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--dark-bg); color: var(--text); font-family: var(--font-body);
-  overflow-x: hidden;
-  background-image: radial-gradient(ellipse at 20% 50%, rgba(0,245,255,0.03) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(191,0,255,0.04) 0%, transparent 50%);
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--dark-bg);color:var(--text);font-family:var(--font-body);overflow-x:hidden;
+  background-image:radial-gradient(ellipse at 20% 50%,rgba(0,245,255,0.03) 0%,transparent 60%),
+  radial-gradient(ellipse at 80% 20%,rgba(191,0,255,0.04) 0%,transparent 50%);
 }
-body::before {
-  content: ''; position: fixed; top:0;left:0;right:0;bottom:0;
-  background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);
-  pointer-events:none; z-index:9999;
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;bottom:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);
+  pointer-events:none;z-index:9999;
 }
-.grid-bg {
-  position: fixed; top:0;left:0;width:100%;height:100%;
-  background-image: linear-gradient(rgba(0,245,255,0.03) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,245,255,0.03) 1px,transparent 1px);
-  background-size: 50px 50px; pointer-events:none; z-index:0;
+.grid-bg{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background-image:linear-gradient(rgba(0,245,255,0.03) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,245,255,0.03) 1px,transparent 1px);
+  background-size:50px 50px;pointer-events:none;z-index:0;
 }
-nav {
-  position: sticky; top:0; z-index:1000;
-  background: rgba(6,8,18,0.92); backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0,245,255,0.15);
-  padding: 0 5%; height: 64px;
-  display: flex; align-items: center; justify-content: space-between;
+/* NAV */
+nav{position:sticky;top:0;z-index:1000;background:rgba(6,8,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,245,255,0.15);padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:var(--font-display);font-size:1.1rem;font-weight:900;color:var(--neon-cyan);text-shadow:0 0 20px rgba(0,245,255,0.6);letter-spacing:0.1em;display:flex;align-items:center;gap:10px;}
+.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-family:var(--font-body);font-weight:600;font-size:0.9rem;letter-spacing:0.05em;transition:color 0.3s;text-transform:uppercase;}
+.nav-links a:hover{color:var(--neon-cyan);}
+.nav-coord-btn{background:transparent;border:1px solid rgba(191,0,255,0.4);color:var(--neon-purple);padding:6px 16px;border-radius:4px;cursor:pointer;font-family:var(--font-display);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;transition:all 0.3s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+.nav-coord-btn:hover{background:rgba(191,0,255,0.1);box-shadow:0 0 20px rgba(191,0,255,0.3);}
+.hamburger{display:none;cursor:pointer;color:var(--neon-cyan);font-size:1.4rem;background:none;border:none;}
+.mobile-nav{display:none;background:var(--card-bg);border-bottom:1px solid var(--card-border);padding:12px 5%;flex-direction:column;gap:4px;}
+.mobile-nav.show{display:flex;}
+.mobile-nav a{color:var(--text-dim);text-decoration:none;font-weight:600;font-size:0.9rem;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);text-transform:uppercase;transition:color 0.3s;}
+.mobile-nav a:hover{color:var(--neon-cyan);}
+/* HERO */
+.hero{position:relative;z-index:1;text-align:center;padding:80px 5% 60px;}
+.hero-badge{display:inline-block;background:linear-gradient(90deg,rgba(0,245,255,0.1),rgba(191,0,255,0.1));border:1px solid rgba(0,245,255,0.3);color:var(--neon-cyan);padding:6px 20px;border-radius:50px;font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.2em;margin-bottom:24px;animation:pulse-border 2s ease-in-out infinite;}
+@keyframes pulse-border{0%,100%{box-shadow:0 0 10px rgba(0,245,255,0.2)}50%{box-shadow:0 0 25px rgba(0,245,255,0.5)}}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:16px;background:linear-gradient(135deg,#fff 0%,var(--neon-cyan) 50%,var(--neon-purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1.3rem;color:var(--text-dim);margin-bottom:12px;font-weight:500;}
+.hero-date{font-family:var(--font-mono);color:var(--neon-green);font-size:0.85rem;letter-spacing:0.15em;margin-bottom:36px;}
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-bottom:40px;flex-wrap:wrap;}
+.stat-num{font-family:var(--font-display);font-size:1.8rem;font-weight:900;color:var(--neon-cyan);text-shadow:0 0 20px rgba(0,245,255,0.5);}
+.stat-label{font-size:0.8rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));color:#000;padding:14px 36px;border-radius:4px;font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;transition:all 0.3s;box-shadow:0 0 30px rgba(0,245,255,0.3);cursor:pointer;border:none;}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(0,245,255,0.5);}
+/* SECTIONS */
+section{position:relative;z-index:1;padding:60px 5%;}
+.section-header{text-align:center;margin-bottom:48px;}
+.section-tag{font-family:var(--font-mono);color:var(--neon-cyan);font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:10px;}
+.section-title{font-family:var(--font-display);font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;letter-spacing:0.05em;}
+.section-title span{color:var(--neon-cyan);}
+/* EVENT CARDS */
+.events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1100px;margin:0 auto;}
+.event-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:32px 28px;position:relative;overflow:hidden;transition:all 0.4s;cursor:pointer;}
+.event-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--card-accent,var(--neon-cyan));box-shadow:0 0 20px var(--card-accent,var(--neon-cyan));}
+.event-card:hover{transform:translateY(-6px);border-color:var(--card-accent,var(--neon-cyan));box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 40px var(--card-glow,rgba(0,245,255,0.15));}
+.event-card.militia{--card-accent:var(--neon-cyan);--card-glow:rgba(0,245,255,0.15);}
+.event-card.efootball{--card-accent:var(--neon-green);--card-glow:rgba(0,255,136,0.15);}
+.event-card.pubg{--card-accent:var(--neon-orange);--card-glow:rgba(255,107,0,0.15);}
+.event-icon{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;border:1px solid var(--card-accent,var(--neon-cyan));color:var(--card-accent,var(--neon-cyan));}
+.event-title{font-family:var(--font-display);font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0.05em;}
+.event-type{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text-dim);padding:3px 10px;border-radius:50px;font-size:0.78rem;font-weight:600;margin-bottom:16px;}
+.event-fee{font-family:var(--font-display);font-size:2rem;font-weight:900;color:var(--card-accent,var(--neon-cyan));margin-bottom:4px;}
+.event-fee-label{font-size:0.8rem;color:var(--text-dim);letter-spacing:0.1em;}
+.event-features{margin-top:20px;list-style:none;}
+.event-features li{display:flex;align-items:center;gap:8px;font-size:0.88rem;color:var(--text-dim);padding:4px 0;}
+.event-features li::before{content:'▸';color:var(--card-accent,var(--neon-cyan));font-size:0.7rem;}
+.register-btn{display:block;width:100%;margin-top:24px;padding:12px;background:transparent;border:1px solid var(--card-accent,var(--neon-cyan));color:var(--card-accent,var(--neon-cyan));border-radius:6px;font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;transition:all 0.3s;text-transform:uppercase;}
+.register-btn:hover{color:#000;}
+/* FORM */
+.form-container{max-width:720px;margin:0 auto;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;box-shadow:0 0 80px rgba(0,0,0,0.5);}
+.form-header{background:linear-gradient(135deg,rgba(0,245,255,0.08),rgba(191,0,255,0.08));border-bottom:1px solid var(--card-border);padding:28px 36px;display:flex;align-items:center;gap:16px;}
+.form-header-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#000;flex-shrink:0;}
+.form-header h2{font-family:var(--font-display);font-size:1.3rem;font-weight:800;letter-spacing:0.05em;}
+.form-header p{font-size:0.85rem;color:var(--text-dim);margin-top:3px;}
+.form-body{padding:36px;}
+.form-section-title{font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.2em;color:var(--neon-cyan);text-transform:uppercase;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(0,245,255,0.15);display:flex;align-items:center;gap:8px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{margin-bottom:18px;}
+.form-group label{display:block;font-size:0.82rem;font-weight:600;color:var(--text-dim);margin-bottom:7px;letter-spacing:0.05em;text-transform:uppercase;}
+.req{color:var(--neon-cyan);}
+.form-group input,.form-group select{width:100%;background:var(--surface);border:1px solid var(--card-border);border-radius:7px;color:var(--text);padding:11px 14px;font-family:var(--font-body);font-size:0.95rem;font-weight:500;transition:all 0.3s;outline:none;-webkit-appearance:none;appearance:none;}
+.form-group input:focus,.form-group select:focus{border-color:var(--neon-cyan);box-shadow:0 0 0 3px rgba(0,245,255,0.08);}
+.form-group input.err,.form-group select.err{border-color:#ff4757;}
+.err-msg{color:#ff4757;font-size:0.78rem;margin-top:4px;display:none;}
+.err-msg.show{display:block;}
+/* TEAM */
+#teamSection{background:rgba(0,245,255,0.03);border:1px solid rgba(0,245,255,0.1);border-radius:10px;padding:24px;margin-bottom:24px;display:none;}
+#teamSection.show{display:block;animation:slideDown 0.3s ease;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+/* PAYMENT */
+.payment-section{background:rgba(191,0,255,0.03);border:1px solid rgba(191,0,255,0.15);border-radius:10px;padding:24px;margin-bottom:24px;}
+.pay-amount-row{background:var(--surface);border:1px solid var(--card-border);border-radius:8px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.pay-amount-val{font-family:var(--font-display);font-size:1.6rem;font-weight:900;color:var(--neon-green);text-shadow:0 0 15px rgba(0,255,136,0.4);}
+.upi-box{background:var(--surface);border:1px dashed rgba(0,245,255,0.3);border-radius:8px;padding:16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.upi-id{font-family:var(--font-mono);font-size:1.1rem;color:var(--neon-cyan);}
+.qr-wrap{text-align:center;margin:16px 0;}
+#qrcode{background:#fff;padding:10px;border-radius:8px;display:inline-block;}
+.qr-label{font-size:0.78rem;color:var(--text-dim);margin-top:8px;letter-spacing:0.1em;}
+.pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+.pay-btn{padding:12px 8px;background:var(--surface);border:1px solid var(--card-border);border-radius:8px;color:var(--text-dim);cursor:pointer;font-family:var(--font-body);font-size:0.82rem;font-weight:600;text-align:center;transition:all 0.3s;display:flex;flex-direction:column;align-items:center;gap:6px;}
+.pay-btn i{font-size:1.2rem;}
+.pay-btn.active,.pay-btn:hover{border-color:var(--neon-cyan);color:var(--neon-cyan);background:rgba(0,245,255,0.05);}
+.pay-panel{display:none;}
+.pay-panel.show{display:block;animation:slideDown 0.3s ease;}
+.file-area{border:2px dashed rgba(0,245,255,0.2);border-radius:8px;padding:24px;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--surface);}
+.file-area:hover{border-color:var(--neon-cyan);}
+.file-area i{font-size:2rem;color:var(--neon-cyan);margin-bottom:8px;display:block;}
+.file-area p{font-size:0.85rem;color:var(--text-dim);}
+.file-name{font-size:0.8rem;color:var(--neon-green);margin-top:8px;}
+/* SUBMIT */
+.submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));border:none;border-radius:8px;color:#000;font-family:var(--font-display);font-size:0.9rem;font-weight:900;letter-spacing:0.15em;cursor:pointer;transition:all 0.3s;box-shadow:0 0 30px rgba(0,245,255,0.2);display:flex;align-items:center;justify-content:center;gap:10px;text-transform:uppercase;}
+.submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 40px rgba(0,245,255,0.4);}
+.submit-btn:disabled{opacity:0.6;cursor:not-allowed;}
+.copy-btn{background:transparent;border:1px solid rgba(0,245,255,0.3);color:var(--neon-cyan);padding:6px 14px;border-radius:4px;font-size:0.75rem;cursor:pointer;transition:all 0.3s;font-family:var(--font-mono);}
+.copy-btn:hover{background:rgba(0,245,255,0.1);}
+/* SUCCESS */
+.success-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(6,8,18,0.95);z-index:10000;align-items:center;justify-content:center;backdrop-filter:blur(10px);}
+.success-overlay.show{display:flex;}
+.success-card{background:var(--card-bg);border:1px solid rgba(0,255,136,0.3);border-radius:20px;padding:48px 40px;text-align:center;max-width:480px;width:90%;box-shadow:0 0 80px rgba(0,255,136,0.15);animation:pop 0.5s cubic-bezier(0.34,1.56,0.64,1);}
+@keyframes pop{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
+.success-icon{width:80px;height:80px;background:linear-gradient(135deg,var(--neon-green),var(--neon-cyan));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 24px;box-shadow:0 0 40px rgba(0,255,136,0.4);}
+.success-title{font-family:var(--font-display);font-size:1.5rem;font-weight:900;color:var(--neon-green);margin-bottom:12px;}
+.success-msg{color:var(--text-dim);font-size:1rem;line-height:1.6;margin-bottom:16px;}
+.success-reg-id{font-family:var(--font-mono);color:var(--neon-cyan);font-size:1rem;margin-bottom:24px;background:var(--surface);padding:12px;border-radius:8px;}
+.close-btn{background:linear-gradient(135deg,var(--neon-green),var(--neon-cyan));border:none;border-radius:8px;color:#000;padding:12px 32px;font-family:var(--font-display);font-size:0.8rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;transition:all 0.3s;}
+.close-btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(0,255,136,0.4);}
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:14px 20px;font-size:0.88rem;z-index:9998;transform:translateY(100px);opacity:0;transition:all 0.3s;max-width:320px;pointer-events:none;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.ok{border-color:var(--neon-green);color:var(--neon-green);}
+.toast.err{border-color:#ff4757;color:#ff4757;}
+/* MISC */
+.spinner{width:18px;height:18px;border:2px solid rgba(0,0,0,0.3);border-top-color:#000;border-radius:50%;animation:spin 0.8s linear infinite;display:inline-block;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.neon-divider{height:1px;background:linear-gradient(90deg,transparent,var(--neon-cyan),transparent);margin:40px 0;opacity:0.3;}
+.api-error-banner{background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.3);border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:0.85rem;color:#ff4757;display:none;}
+.api-error-banner.show{display:block;}
+/* FOOTER */
+footer{position:relative;z-index:1;background:var(--card-bg);border-top:1px solid var(--card-border);padding:40px 5% 24px;text-align:center;}
+.footer-logo{font-family:var(--font-display);font-size:1.2rem;font-weight:900;color:var(--neon-cyan);text-shadow:0 0 20px rgba(0,245,255,0.4);margin-bottom:10px;}
+.footer-college{font-size:1rem;font-weight:600;margin-bottom:20px;}
+.footer-contacts{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:24px;}
+.footer-contact{display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--text-dim);}
+.footer-contact i{color:var(--neon-cyan);}
+.footer-bottom{border-top:1px solid var(--card-border);padding-top:16px;font-size:0.78rem;color:var(--text-dim);}
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:block;}
+  .form-body{padding:24px 20px;}
+  .form-header{padding:20px;}
+  .form-row{grid-template-columns:1fr;}
+  .pay-methods{grid-template-columns:1fr;}
+  .hero-stats{gap:24px;}
 }
-.nav-logo {
-  font-family: var(--font-display); font-size:1.1rem; font-weight:900;
-  color: var(--neon-cyan); text-shadow: 0 0 20px rgba(0,245,255,0.6);
-  letter-spacing: 0.1em; display:flex; align-items:center; gap:10px;
-}
-.logo-icon { width:32px;height:32px; background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple)); border-radius:6px; display:flex;align-items:center;justify-content:center;font-size:16px; }
-.nav-links { display:flex; gap:24px; list-style:none; }
-.nav-links a { color:var(--text-dim);text-decoration:none;font-family:var(--font-body);font-weight:600;font-size:0.9rem;letter-spacing:0.05em;transition:all 0.3s;text-transform:uppercase; }
-.nav-links a:hover { color:var(--neon-cyan); }
-.nav-coord-btn { background:transparent;border:1px solid rgba(191,0,255,0.4);color:var(--neon-purple);padding:6px 16px;border-radius:4px;cursor:pointer;font-family:var(--font-display);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;transition:all 0.3s;text-decoration:none;display:inline-flex;align-items:center;gap:6px; }
-.nav-coord-btn:hover { background:rgba(191,0,255,0.1); box-shadow:0 0 20px rgba(191,0,255,0.3); }
-.hamburger { display:none;cursor:pointer;color:var(--neon-cyan);font-size:1.4rem; }
-.mobile-nav { display:none;background:var(--card-bg);border-bottom:1px solid var(--card-border);padding:12px 5%;flex-direction:column;gap:4px; }
-.mobile-nav.show { display:flex; }
-.mobile-nav a { color:var(--text-dim);text-decoration:none;font-weight:600;font-size:0.9rem;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);text-transform:uppercase;transition:color 0.3s; }
-.mobile-nav a:hover { color:var(--neon-cyan); }
-.hero { position:relative;z-index:1;text-align:center;padding:80px 5% 60px;overflow:hidden; }
-.hero::before { content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(0,245,255,0.06) 0%,transparent 70%);pointer-events:none; }
-.hero-badge { display:inline-block;background:linear-gradient(90deg,rgba(0,245,255,0.1),rgba(191,0,255,0.1));border:1px solid rgba(0,245,255,0.3);color:var(--neon-cyan);padding:6px 20px;border-radius:50px;font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.2em;margin-bottom:24px;animation:pulse-border 2s ease-in-out infinite; }
-@keyframes pulse-border { 0%,100%{box-shadow:0 0 10px rgba(0,245,255,0.2)}50%{box-shadow:0 0 25px rgba(0,245,255,0.5)} }
-.hero h1 { font-family:var(--font-display);font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:16px;background:linear-gradient(135deg,#fff 0%,var(--neon-cyan) 50%,var(--neon-purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-.hero-sub { font-size:1.3rem;color:var(--text-dim);margin-bottom:12px;font-weight:500; }
-.hero-date { font-family:var(--font-mono);color:var(--neon-green);font-size:0.85rem;letter-spacing:0.15em;margin-bottom:36px; }
-.hero-stats { display:flex;justify-content:center;gap:48px;margin-bottom:40px;flex-wrap:wrap; }
-.stat-num { font-family:var(--font-display);font-size:1.8rem;font-weight:900;color:var(--neon-cyan);text-shadow:0 0 20px rgba(0,245,255,0.5); }
-.stat-label { font-size:0.8rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase; }
-.hero-cta { display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));color:#000;padding:14px 36px;border-radius:4px;font-family:var(--font-display);font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-decoration:none;transition:all 0.3s;box-shadow:0 0 30px rgba(0,245,255,0.3);cursor:pointer;border:none; }
-.hero-cta:hover { transform:translateY(-2px);box-shadow:0 8px 40px rgba(0,245,255,0.5); }
-section { position:relative;z-index:1;padding:60px 5%; }
-.section-header { text-align:center;margin-bottom:48px; }
-.section-tag { font-family:var(--font-mono);color:var(--neon-cyan);font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:10px; }
-.section-title { font-family:var(--font-display);font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;letter-spacing:0.05em; }
-.section-title span { color:var(--neon-cyan); }
-.events-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1100px;margin:0 auto; }
-.event-card { background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:32px 28px;position:relative;overflow:hidden;transition:all 0.4s;cursor:pointer; }
-.event-card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--card-accent);box-shadow:0 0 20px var(--card-accent); }
-.event-card:hover { transform:translateY(-6px);border-color:var(--card-accent);box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 40px var(--card-glow); }
-.event-card.militia { --card-accent:var(--neon-cyan);--card-accent-soft:rgba(0,245,255,0.05);--card-glow:rgba(0,245,255,0.15); }
-.event-card.efootball { --card-accent:var(--neon-green);--card-accent-soft:rgba(0,255,136,0.05);--card-glow:rgba(0,255,136,0.15); }
-.event-card.pubg { --card-accent:var(--neon-orange);--card-accent-soft:rgba(255,107,0,0.05);--card-glow:rgba(255,107,0,0.15); }
-.event-icon { width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;background:var(--card-accent-soft);border:1px solid var(--card-accent);color:var(--card-accent);box-shadow:0 0 20px var(--card-glow); }
-.event-title { font-family:var(--font-display);font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0.05em; }
-.event-type { display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text-dim);padding:3px 10px;border-radius:50px;font-size:0.78rem;font-weight:600;margin-bottom:16px; }
-.event-fee { font-family:var(--font-display);font-size:2rem;font-weight:900;color:var(--card-accent);text-shadow:0 0 20px var(--card-glow);margin-bottom:4px; }
-.event-fee-label { font-size:0.8rem;color:var(--text-dim);letter-spacing:0.1em; }
-.event-features { margin-top:20px;list-style:none; }
-.event-features li { display:flex;align-items:center;gap:8px;font-size:0.88rem;color:var(--text-dim);padding:4px 0; }
-.event-features li::before { content:'▸';color:var(--card-accent);font-size:0.7rem; }
-.register-btn { display:block;width:100%;margin-top:24px;padding:12px;background:transparent;border:1px solid var(--card-accent);color:var(--card-accent);border-radius:6px;font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;transition:all 0.3s;text-transform:uppercase; }
-.register-btn:hover { background:var(--card-accent);color:#000;box-shadow:0 0 20px var(--card-glow); }
-.form-container { max-width:720px;margin:0 auto;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;box-shadow:0 0 80px rgba(0,0,0,0.5),0 0 40px rgba(0,245,255,0.05); }
-.form-header { background:linear-gradient(135deg,rgba(0,245,255,0.08),rgba(191,0,255,0.08));border-bottom:1px solid var(--card-border);padding:28px 36px;display:flex;align-items:center;gap:16px; }
-.form-header-icon { width:48px;height:48px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#000;flex-shrink:0; }
-.form-header h2 { font-family:var(--font-display);font-size:1.3rem;font-weight:800;letter-spacing:0.05em; }
-.form-header p { font-size:0.85rem;color:var(--text-dim);margin-top:3px; }
-.form-body { padding:36px; }
-.form-section-title { font-family:var(--font-display);font-size:0.75rem;font-weight:700;letter-spacing:0.2em;color:var(--neon-cyan);text-transform:uppercase;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(0,245,255,0.15);display:flex;align-items:center;gap:8px; }
-.form-row { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
-.form-group { margin-bottom:18px; }
-.form-group label { display:block;font-size:0.82rem;font-weight:600;color:var(--text-dim);margin-bottom:7px;letter-spacing:0.05em;text-transform:uppercase; }
-.form-group label .req { color:var(--neon-cyan); }
-.form-group input,.form-group select { width:100%;background:var(--surface);border:1px solid var(--card-border);border-radius:7px;color:var(--text);padding:11px 14px;font-family:var(--font-body);font-size:0.95rem;font-weight:500;transition:all 0.3s;outline:none;-webkit-appearance:none; }
-.form-group input:focus,.form-group select:focus { border-color:var(--neon-cyan);box-shadow:0 0 0 3px rgba(0,245,255,0.08); }
-.form-group input.err { border-color:#ff4757; }
-.err-msg { color:#ff4757;font-size:0.78rem;margin-top:4px;display:none; }
-.show-err { display:block; }
-.form-group select option { background:var(--card-bg); }
-#teamSection { background:rgba(0,245,255,0.03);border:1px solid rgba(0,245,255,0.1);border-radius:10px;padding:24px;margin-bottom:24px;display:none; }
-#teamSection.active { display:block;animation:slideDown 0.3s ease; }
-@keyframes slideDown { from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)} }
-.payment-section { background:rgba(191,0,255,0.03);border:1px solid rgba(191,0,255,0.15);border-radius:10px;padding:24px;margin-bottom:24px; }
-.pay-amount-row { background:var(--surface);border:1px solid var(--card-border);border-radius:8px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px; }
-.pay-amount-val { font-family:var(--font-display);font-size:1.6rem;font-weight:900;color:var(--neon-green);text-shadow:0 0 15px rgba(0,255,136,0.4); }
-.upi-box { background:var(--surface);border:1px dashed rgba(0,245,255,0.3);border-radius:8px;padding:16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px; }
-.upi-id { font-family:var(--font-mono);font-size:1.1rem;color:var(--neon-cyan); }
-.qr-container { text-align:center;margin:16px 0; }
-#qrcode { background:#fff;padding:10px;border-radius:8px;display:inline-block; }
-.qr-label { font-size:0.78rem;color:var(--text-dim);margin-top:8px;letter-spacing:0.1em; }
-.pay-methods { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px; }
-.pay-btn { padding:12px 8px;background:var(--surface);border:1px solid var(--card-border);border-radius:8px;color:var(--text-dim);cursor:pointer;font-family:var(--font-body);font-size:0.82rem;font-weight:600;text-align:center;transition:all 0.3s;display:flex;flex-direction:column;align-items:center;gap:6px; }
-.pay-btn i { font-size:1.2rem; }
-.pay-btn.active,.pay-btn:hover { border-color:var(--neon-cyan);color:var(--neon-cyan);background:rgba(0,245,255,0.05); }
-.pay-input { display:none; }
-.pay-input.active { display:block;animation:slideDown 0.3s ease; }
-.file-area { border:2px dashed rgba(0,245,255,0.2);border-radius:8px;padding:24px;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--surface); }
-.file-area:hover { border-color:var(--neon-cyan); }
-.file-area i { font-size:2rem;color:var(--neon-cyan);margin-bottom:8px;display:block; }
-.file-area p { font-size:0.85rem;color:var(--text-dim); }
-.file-name { font-size:0.8rem;color:var(--neon-green);margin-top:8px; }
-.submit-btn { width:100%;padding:16px;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));border:none;border-radius:8px;color:#000;font-family:var(--font-display);font-size:0.9rem;font-weight:900;letter-spacing:0.15em;cursor:pointer;transition:all 0.3s;box-shadow:0 0 30px rgba(0,245,255,0.2);display:flex;align-items:center;justify-content:center;gap:10px;text-transform:uppercase; }
-.submit-btn:hover:not(:disabled) { transform:translateY(-2px);box-shadow:0 8px 40px rgba(0,245,255,0.4); }
-.submit-btn:disabled { opacity:0.6;cursor:not-allowed; }
-.copy-btn { background:transparent;border:1px solid rgba(0,245,255,0.3);color:var(--neon-cyan);padding:4px 12px;border-radius:4px;font-size:0.75rem;cursor:pointer;transition:all 0.3s;font-family:var(--font-mono); }
-.copy-btn:hover { background:rgba(0,245,255,0.1); }
-.copy-btn.copied { color:var(--neon-green);border-color:var(--neon-green); }
-.success-overlay { display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(6,8,18,0.95);z-index:10000;align-items:center;justify-content:center;backdrop-filter:blur(10px); }
-.success-overlay.show { display:flex; }
-.success-card { background:var(--card-bg);border:1px solid rgba(0,255,136,0.3);border-radius:20px;padding:48px 40px;text-align:center;max-width:480px;width:90%;box-shadow:0 0 80px rgba(0,255,136,0.15);animation:successPop 0.5s cubic-bezier(0.34,1.56,0.64,1); }
-@keyframes successPop { from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)} }
-.success-icon { width:80px;height:80px;background:linear-gradient(135deg,var(--neon-green),var(--neon-cyan));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 24px;box-shadow:0 0 40px rgba(0,255,136,0.4); }
-.success-title { font-family:var(--font-display);font-size:1.5rem;font-weight:900;color:var(--neon-green);margin-bottom:12px; }
-.success-msg { color:var(--text-dim);font-size:1rem;line-height:1.6;margin-bottom:16px; }
-.success-reg-id { font-family:var(--font-mono);color:var(--neon-cyan);font-size:1rem;margin-bottom:24px;background:var(--surface);padding:12px;border-radius:8px; }
-.close-success-btn { background:linear-gradient(135deg,var(--neon-green),var(--neon-cyan));border:none;border-radius:8px;color:#000;padding:12px 32px;font-family:var(--font-display);font-size:0.8rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;transition:all 0.3s; }
-.close-success-btn:hover { box-shadow:0 0 30px rgba(0,255,136,0.4);transform:translateY(-2px); }
-.toast { position:fixed;bottom:24px;right:24px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:14px 20px;font-size:0.88rem;color:var(--text);z-index:9998;transform:translateY(100px);opacity:0;transition:all 0.3s;max-width:320px; }
-.toast.show { transform:translateY(0);opacity:1; }
-.toast.success { border-color:var(--neon-green);color:var(--neon-green); }
-.toast.error { border-color:#ff4757;color:#ff4757; }
-.spinner { width:18px;height:18px;border:2px solid rgba(0,0,0,0.3);border-top-color:#000;border-radius:50%;animation:spin 0.8s linear infinite; }
-@keyframes spin { to{transform:rotate(360deg)} }
-.neon-divider { height:1px;background:linear-gradient(90deg,transparent,var(--neon-cyan),transparent);margin:40px 0;opacity:0.3; }
-footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px solid var(--card-border);padding:40px 5% 24px;text-align:center; }
-.footer-logo { font-family:var(--font-display);font-size:1.2rem;font-weight:900;color:var(--neon-cyan);text-shadow:0 0 20px rgba(0,245,255,0.4);margin-bottom:10px; }
-.footer-college { font-size:1rem;font-weight:600;margin-bottom:6px; }
-.footer-dept { font-size:0.85rem;color:var(--text-dim);margin-bottom:20px; }
-.footer-contacts { display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:24px; }
-.footer-contact { display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--text-dim); }
-.footer-contact i { color:var(--neon-cyan); }
-.footer-bottom { border-top:1px solid var(--card-border);padding-top:16px;font-size:0.78rem;color:var(--text-dim); }
-.api-error-banner { background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.3);border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:0.85rem;color:#ff4757;display:none; }
-.api-error-banner.show { display:block; }
-@media(max-width:768px) { .nav-links{display:none}.hamburger{display:block}.form-body{padding:24px 20px}.form-header{padding:20px}.form-row{grid-template-columns:1fr}.pay-methods{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
 <div class="grid-bg"></div>
 
+<!-- NAV -->
 <nav>
   <div class="nav-logo"><div class="logo-icon">⚡</div>E-GAMES 2026</div>
   <ul class="nav-links">
@@ -180,13 +187,13 @@ footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px so
   </ul>
   <div style="display:flex;align-items:center;gap:12px;">
     <a href="coordinator.html" class="nav-coord-btn"><i class="fas fa-shield-alt"></i> COORDINATOR</a>
-    <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('show')"><i class="fas fa-bars"></i></div>
+    <button class="hamburger" onclick="toggleMobileNav()"><i class="fas fa-bars"></i></button>
   </div>
 </nav>
 <div class="mobile-nav" id="mobileNav">
-  <a href="#events">Events</a>
-  <a href="#register">Register</a>
-  <a href="#contact">Contact</a>
+  <a href="#events" onclick="closeMobileNav()">Events</a>
+  <a href="#register" onclick="closeMobileNav()">Register</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
   <a href="coordinator.html">Coordinator Login</a>
 </div>
 
@@ -202,7 +209,7 @@ footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px so
     <div><div class="stat-num">50+</div><div class="stat-label">Participants</div></div>
     <div><div class="stat-num">1</div><div class="stat-label">Champion</div></div>
   </div>
-  <button class="hero-cta" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">
+  <button class="hero-cta" onclick="scrollToRegister()">
     <i class="fas fa-gamepad"></i> REGISTER NOW
   </button>
 </section>
@@ -214,39 +221,64 @@ footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px so
     <h2 class="section-title">FEATURED <span>EVENTS</span></h2>
   </div>
   <div class="events-grid">
+
     <div class="event-card militia">
       <div class="event-icon"><i class="fas fa-crosshairs"></i></div>
       <div class="event-title">MINI MILITIA</div>
       <span class="event-type"><i class="fas fa-users"></i> Team Event</span>
       <div class="event-fee">₹80</div>
       <div class="event-fee-label">PER TEAM</div>
-      <ul class="event-features"><li>4 Players per Team</li><li>Elimination Bracket</li><li>Best of 3 Rounds</li><li>Trophy + Certificate</li></ul>
-      <button class="register-btn" onclick="selectEvent('Mini Militia - Team of 4 - ₹80')"><i class="fas fa-plus"></i> REGISTER TEAM</button>
+      <ul class="event-features">
+        <li>4 Players per Team</li>
+        <li>Elimination Bracket</li>
+        <li>Best of 3 Rounds</li>
+        <li>Trophy + Certificate</li>
+      </ul>
+      <button class="register-btn" onclick="selectEvent('Mini Militia - Team of 4 - Rs80')">
+        <i class="fas fa-plus"></i> REGISTER TEAM
+      </button>
     </div>
+
     <div class="event-card efootball">
       <div class="event-icon"><i class="fas fa-futbol"></i></div>
       <div class="event-title">eFOOTBALL</div>
       <span class="event-type"><i class="fas fa-user"></i> Individual Event</span>
       <div class="event-fee">₹50</div>
       <div class="event-fee-label">PER PLAYER</div>
-      <ul class="event-features"><li>Individual Tournament</li><li>Double Elimination</li><li>Custom Team Selection</li><li>Trophy + Certificate</li></ul>
-      <button class="register-btn" onclick="selectEvent('eFootball - Individual - ₹50')"><i class="fas fa-plus"></i> REGISTER NOW</button>
+      <ul class="event-features">
+        <li>Individual Tournament</li>
+        <li>Double Elimination</li>
+        <li>Custom Team Selection</li>
+        <li>Trophy + Certificate</li>
+      </ul>
+      <button class="register-btn" onclick="selectEvent('eFootball - Individual - Rs50')">
+        <i class="fas fa-plus"></i> REGISTER NOW
+      </button>
     </div>
+
     <div class="event-card pubg">
       <div class="event-icon"><i class="fas fa-skull"></i></div>
       <div class="event-title">PUBG MOBILE</div>
       <span class="event-type"><i class="fas fa-users"></i> Squad Event</span>
       <div class="event-fee">₹100</div>
       <div class="event-fee-label">PER SQUAD</div>
-      <ul class="event-features"><li>4 Players per Squad</li><li>Erangel/Miramar Map</li><li>Points Based System</li><li>Trophy + Certificate</li></ul>
-      <button class="register-btn" onclick="selectEvent('PUBG Mobile - Squad - ₹100')"><i class="fas fa-plus"></i> REGISTER SQUAD</button>
+      <ul class="event-features">
+        <li>4 Players per Squad</li>
+        <li>Erangel/Miramar Map</li>
+        <li>Points Based System</li>
+        <li>Trophy + Certificate</li>
+      </ul>
+      <button class="register-btn" onclick="selectEvent('PUBG Mobile - Squad - Rs100')">
+        <i class="fas fa-plus"></i> REGISTER SQUAD
+      </button>
     </div>
+
   </div>
 </section>
 
 <div class="neon-divider"></div>
 
-<!-- REGISTRATION -->
+<!-- REGISTRATION FORM -->
 <section id="register">
   <div class="section-header">
     <div class="section-tag">// SECURE YOUR SLOT //</div>
@@ -262,30 +294,33 @@ footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px so
     </div>
     <div class="form-body">
       <div class="api-error-banner" id="apiBanner"></div>
+
       <form id="regForm" novalidate>
+
+        <!-- PERSONAL INFO -->
         <div class="form-section-title"><i class="fas fa-user"></i> Personal Information</div>
         <div class="form-row">
           <div class="form-group">
             <label>Full Name <span class="req">*</span></label>
-            <input type="text" id="fullName" placeholder="Enter your full name">
-            <div class="err-msg" id="e-fullName">Please enter your full name</div>
+            <input type="text" id="fld-name" placeholder="Enter your full name">
+            <div class="err-msg" id="err-name">Please enter your full name</div>
           </div>
           <div class="form-group">
             <label>Contact Number <span class="req">*</span></label>
-            <input type="tel" id="contactNumber" placeholder="10-digit mobile number" maxlength="13">
-            <div class="err-msg" id="e-contact">Enter a valid 10-digit number</div>
+            <input type="tel" id="fld-phone" placeholder="10-digit mobile number" maxlength="13">
+            <div class="err-msg" id="err-phone">Enter a valid 10-digit number</div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Email ID <span class="req">*</span></label>
-            <input type="email" id="emailId" placeholder="yourname@email.com">
-            <div class="err-msg" id="e-email">Enter a valid email address</div>
+            <input type="email" id="fld-email" placeholder="yourname@email.com">
+            <div class="err-msg" id="err-email">Enter a valid email address</div>
           </div>
           <div class="form-group">
-            <label>Semester & Department <span class="req">*</span></label>
-            <select id="semDept">
-              <option value="">Select Semester & Dept</option>
+            <label>Semester &amp; Department <span class="req">*</span></label>
+            <select id="fld-sem">
+              <option value="">Select Semester &amp; Dept</option>
               <option>S1 CSE</option><option>S1 ECE</option><option>S1 MECH</option><option>S1 CIVIL</option><option>S1 EEE</option>
               <option>S2 CSE</option><option>S2 ECE</option><option>S2 MECH</option>
               <option>S3 CSE</option><option>S3 ECE</option><option>S3 MECH</option><option>S3 CIVIL</option><option>S3 EEE</option>
@@ -295,20 +330,21 @@ footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px so
               <option>S7 CSE</option><option>S7 ECE</option><option>S7 MECH</option>
               <option>S8 CSE</option><option>S8 ECE</option><option>S8 MECH</option>
             </select>
-            <div class="err-msg" id="e-sem">Please select your semester & department</div>
+            <div class="err-msg" id="err-sem">Please select your semester &amp; department</div>
           </div>
         </div>
 
+        <!-- EVENT SELECTION -->
         <div class="form-section-title" style="margin-top:8px;"><i class="fas fa-gamepad"></i> Event Selection</div>
         <div class="form-group">
           <label>Select Event <span class="req">*</span></label>
-          <select id="eventSelect" onchange="handleEventChange()">
+          <select id="fld-event" onchange="onEventChange()">
             <option value="">Choose your event</option>
-            <option value="Mini Militia - Team of 4 - ₹80">🎯 Mini Militia — Team of 4 — ₹80</option>
-            <option value="eFootball - Individual - ₹50">⚽ eFootball — Individual — ₹50</option>
-            <option value="PUBG Mobile - Squad - ₹100">💥 PUBG Mobile — Squad — ₹100</option>
+            <option value="Mini Militia - Team of 4 - Rs80">Mini Militia — Team of 4 — Rs.80</option>
+            <option value="eFootball - Individual - Rs50">eFootball — Individual — Rs.50</option>
+            <option value="PUBG Mobile - Squad - Rs100">PUBG Mobile — Squad — Rs.100</option>
           </select>
-          <div class="err-msg" id="e-event">Please select an event</div>
+          <div class="err-msg" id="err-event">Please select an event</div>
         </div>
 
         <!-- TEAM SECTION -->
@@ -317,79 +353,97 @@ footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px so
           <div class="form-row">
             <div class="form-group">
               <label>Team Name <span class="req">*</span></label>
-              <input type="text" id="teamName" placeholder="Enter team name">
-              <div class="err-msg" id="e-teamName">Team name is required</div>
+              <input type="text" id="fld-teamname" placeholder="Enter team name">
+              <div class="err-msg" id="err-teamname">Team name is required</div>
             </div>
             <div class="form-group">
-              <label>Team Leader Name <span class="req">*</span></label>
-              <input type="text" id="leaderName" placeholder="Leader's full name">
-              <div class="err-msg" id="e-leaderName">Leader name is required</div>
+              <label>Team Leader <span class="req">*</span></label>
+              <input type="text" id="fld-leader" placeholder="Leader's full name">
+              <div class="err-msg" id="err-leader">Leader name is required</div>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label>Player 2 <span class="req">*</span></label>
-              <input type="text" id="player2" placeholder="Player 2 full name">
-              <div class="err-msg" id="e-player2">Required</div>
+              <input type="text" id="fld-p2" placeholder="Player 2 full name">
+              <div class="err-msg" id="err-p2">Required</div>
             </div>
             <div class="form-group">
               <label>Player 3 <span class="req">*</span></label>
-              <input type="text" id="player3" placeholder="Player 3 full name">
-              <div class="err-msg" id="e-player3">Required</div>
+              <input type="text" id="fld-p3" placeholder="Player 3 full name">
+              <div class="err-msg" id="err-p3">Required</div>
             </div>
           </div>
           <div class="form-group">
             <label>Player 4 <span class="req">*</span></label>
-            <input type="text" id="player4" placeholder="Player 4 full name">
-            <div class="err-msg" id="e-player4">Required</div>
+            <input type="text" id="fld-p4" placeholder="Player 4 full name">
+            <div class="err-msg" id="err-p4">Required</div>
           </div>
         </div>
 
         <!-- PAYMENT -->
         <div class="payment-section">
           <div class="form-section-title"><i class="fas fa-credit-card"></i> Payment Details</div>
+
           <div class="pay-amount-row">
             <div>
               <div style="font-size:0.82rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.05em;">Registration Fee</div>
-              <div style="font-size:0.78rem;color:var(--text-dim);margin-top:3px;" id="eventNameSmall">Select an event above</div>
+              <div style="font-size:0.78rem;color:var(--text-dim);margin-top:3px;" id="eventLabel">Select an event above</div>
             </div>
-            <div class="pay-amount-val" id="payAmount">₹0</div>
+            <div class="pay-amount-val" id="payAmount">Rs.0</div>
           </div>
+
           <div class="upi-box">
             <div>
               <div style="font-size:0.75rem;color:var(--text-dim);letter-spacing:0.1em;margin-bottom:4px;">UPI PAYMENT ID</div>
-              <div class="upi-id">7994699455@jio</div>
+              <div class="upi-id">fajas2004@oksbi</div>
             </div>
-            <button type="button" class="copy-btn" onclick="copyUPI(this)"><i class="fas fa-copy"></i> COPY</button>
+            <button type="button" class="copy-btn" id="copyBtn" onclick="copyUPI()">
+              <i class="fas fa-copy"></i> COPY
+            </button>
           </div>
-          <div class="qr-container">
+
+          <div class="qr-wrap">
             <div id="qrcode"></div>
-            <div class="qr-label">📱 SCAN TO PAY VIA ANY UPI APP</div>
+            <div class="qr-label">SCAN TO PAY VIA ANY UPI APP</div>
           </div>
+
           <div class="pay-methods">
-            <button type="button" class="pay-btn active" id="btn-upi" onclick="selectPay('upi')"><i class="fas fa-mobile-alt"></i>UPI / Online</button>
-            <button type="button" class="pay-btn" id="btn-screenshot" onclick="selectPay('screenshot')"><i class="fas fa-image"></i>Screenshot</button>
-            <button type="button" class="pay-btn" id="btn-cash" onclick="selectPay('cash')"><i class="fas fa-money-bill-wave"></i>Cash (Offline)</button>
+            <button type="button" class="pay-btn active" id="pbtn-upi" onclick="setPay('upi')">
+              <i class="fas fa-mobile-alt"></i>UPI / Online
+            </button>
+            <button type="button" class="pay-btn" id="pbtn-screenshot" onclick="setPay('screenshot')">
+              <i class="fas fa-image"></i>Screenshot
+            </button>
+            <button type="button" class="pay-btn" id="pbtn-cash" onclick="setPay('cash')">
+              <i class="fas fa-money-bill-wave"></i>Cash (Offline)
+            </button>
           </div>
-          <div class="pay-input active" id="pg-upi">
+
+          <!-- UPI panel -->
+          <div class="pay-panel show" id="panel-upi">
             <div class="form-group">
               <label>UPI Transaction ID <span class="req">*</span></label>
-              <input type="text" id="transactionId" placeholder="Enter 12-digit UPI transaction ID" style="font-family:var(--font-mono)">
-              <div class="err-msg" id="e-txn">Transaction ID is required for UPI payment</div>
+              <input type="text" id="fld-txn" placeholder="Enter UPI transaction ID" style="font-family:var(--font-mono)">
+              <div class="err-msg" id="err-txn">Transaction ID is required for UPI payment</div>
             </div>
           </div>
-          <div class="pay-input" id="pg-screenshot">
+
+          <!-- Screenshot panel -->
+          <div class="pay-panel" id="panel-screenshot">
             <div class="form-group">
               <label>Upload Payment Screenshot</label>
-              <div class="file-area" onclick="document.getElementById('screenshotFile').click()" id="dropZone">
-                <input type="file" id="screenshotFile" accept="image/*" style="display:none" onchange="handleFile(event)">
+              <div class="file-area" id="dropZone" onclick="document.getElementById('fld-file').click()">
+                <input type="file" id="fld-file" accept="image/*" style="display:none" onchange="onFileChange(event)">
                 <i class="fas fa-cloud-upload-alt"></i>
-                <p>Click to upload or drag & drop<br><small>PNG, JPG (Max 5MB)</small></p>
+                <p>Click to upload or drag &amp; drop<br><small>PNG, JPG (Max 5MB)</small></p>
                 <div class="file-name" id="fileName"></div>
               </div>
             </div>
           </div>
-          <div class="pay-input" id="pg-cash">
+
+          <!-- Cash panel -->
+          <div class="pay-panel" id="panel-cash">
             <div style="background:rgba(255,107,0,0.05);border:1px solid rgba(255,107,0,0.2);border-radius:8px;padding:16px;text-align:center;">
               <div style="font-size:1.5rem;margin-bottom:8px;">💵</div>
               <div style="font-weight:600;color:var(--neon-orange);margin-bottom:4px;">Cash Payment Selected</div>
@@ -398,223 +452,362 @@ footer { position:relative;z-index:1;background:var(--card-bg);border-top:1px so
           </div>
         </div>
 
-        <button type="submit" class="submit-btn" id="submitBtn">
+        <button type="button" class="submit-btn" id="submitBtn" onclick="submitForm()">
           <i class="fas fa-check-circle"></i> CONFIRM REGISTRATION
         </button>
+
       </form>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer id="contact">
   <div class="footer-logo">⚡ E-GAMES 2026</div>
-  <div class="footer-college">Mgm Technological Campus</div>
-  <!-- <div class="footer-dept">Department of Computer Science & Engineering</div> -->
+  <div class="footer-college">MGM Technological Campus, Valanchery</div>
   <div class="footer-contacts">
     <div class="footer-contact"><i class="fas fa-phone"></i> +91 85909 95852</div>
-    <div class="footer-contact"><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e7848491d5d58494d7d7d7a7808a868e8bc984888a">[email&#160;protected]</a></div>
     <div class="footer-contact"><i class="fas fa-map-marker-alt"></i> Campus, Valanchery</div>
   </div>
   <div class="footer-bottom">© 2026 E-Games Tournament · All Rights Reserved · Organized by College Club</div>
 </footer>
 
-<!-- SUCCESS -->
+<!-- SUCCESS OVERLAY -->
 <div class="success-overlay" id="successOverlay">
   <div class="success-card">
     <div class="success-icon">🎉</div>
     <div class="success-title">Registration Successful!</div>
-    <div class="success-msg">A confirmation email has been sent to your email address. Event coordinators will verify your payment and contact you soon.</div>
-    <div class="success-reg-id" id="regIdDisplay">🎫 REG ID: —</div>
-    <button class="close-success-btn" onclick="document.getElementById('successOverlay').classList.remove('show')">
-      <i class="fas fa-check"></i> AWESOME, CLOSE
-    </button>
+    <div class="success-msg">Your registration is confirmed. Coordinators will verify your payment and contact you soon.</div>
+    <div class="success-reg-id" id="regIdDisplay">REG ID: —</div>
+    <button class="close-btn" onclick="closeSuccess()"><i class="fas fa-check"></i> AWESOME, CLOSE</button>
   </div>
 </div>
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── CONFIG: Change this to your deployed backend URL ─────────
-const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+<script>
+// ─────────────────────────────────────────────────────────────
+//  CONFIG
+// ─────────────────────────────────────────────────────────────
+var API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
   ? 'http://localhost:5000/api'
   : 'https://egames-registration.onrender.com/api';
 
-  //   window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  // ? 'http://localhost:5000/api'
-  // : '/api'; // same-origin when deployed together
-
-const FEE_MAP = {
-  'Mini Militia - Team of 4 - ₹80': { fee:'₹80', amount:80, isTeam:true },
-  'eFootball - Individual - ₹50':   { fee:'₹50', amount:50,  isTeam:false },
-  'PUBG Mobile - Squad - ₹100':     { fee:'₹100',amount:100, isTeam:true }
+var FEE_MAP = {
+  'Mini Militia - Team of 4 - Rs80':  { label: 'Mini Militia',  fee: 'Rs.80',  isTeam: true  },
+  'eFootball - Individual - Rs50':    { label: 'eFootball',     fee: 'Rs.50',  isTeam: false },
+  'PUBG Mobile - Squad - Rs100':      { label: 'PUBG Mobile',   fee: 'Rs.100', isTeam: true  }
 };
-let currentPay = 'upi';
 
-// QR Code
-try {
-  new QRCode(document.getElementById('qrcode'), {
-    text:'upi://pay?pa=7994699455@jio&pn=EGames+Tournament&cu=INR',
-    width:120,height:120,colorDark:'#000',colorLight:'#fff',
-    correctLevel:QRCode.CorrectLevel.H
+var currentPay = 'upi';
+
+// ─────────────────────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────────────────────
+(function init() {
+  // QR code
+  try {
+    new QRCode(document.getElementById('qrcode'), {
+      text: 'upi://pay?pa=7994699455@jio&pn=EGames+Tournament&cu=INR',
+      width: 128, height: 128,
+      colorDark: '#000000', colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  } catch(e) {
+    document.getElementById('qrcode').innerHTML =
+      '<p style="padding:16px;color:#8892a4;font-size:0.8rem;">UPI: <strong style="color:#00f5ff">7994699455@jio</strong></p>';
+  }
+
+  // Drag & drop on screenshot zone
+  var dz = document.getElementById('dropZone');
+  dz.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    dz.style.borderColor = '#00f5ff';
   });
-} catch(e) {}
+  dz.addEventListener('dragleave', function() {
+    dz.style.borderColor = '';
+  });
+  dz.addEventListener('drop', function(e) {
+    e.preventDefault();
+    dz.style.borderColor = '';
+    var files = e.dataTransfer.files;
+    if (files.length) {
+      try {
+        var dt = new DataTransfer();
+        dt.items.add(files[0]);
+        document.getElementById('fld-file').files = dt.files;
+      } catch(ex) {}
+      document.getElementById('fileName').textContent = 'Selected: ' + files[0].name;
+    }
+  });
 
-function selectEvent(ev) {
-  document.getElementById('eventSelect').value = ev;
-  handleEventChange();
-  document.getElementById('register').scrollIntoView({behavior:'smooth'});
+  // Phone digits only
+  document.getElementById('fld-phone').addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9+]/g, '');
+  });
+})();
+
+// ─────────────────────────────────────────────────────────────
+//  NAV
+// ─────────────────────────────────────────────────────────────
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('show');
+}
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('show');
 }
 
-function handleEventChange() {
-  const val = document.getElementById('eventSelect').value;
-  const ts = document.getElementById('teamSection');
-  const amt = document.getElementById('payAmount');
-  const evLabel = document.getElementById('eventNameSmall');
+// ─────────────────────────────────────────────────────────────
+//  SCROLL
+// ─────────────────────────────────────────────────────────────
+function scrollToRegister() {
+  document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─────────────────────────────────────────────────────────────
+//  SELECT EVENT FROM CARD
+// ─────────────────────────────────────────────────────────────
+function selectEvent(evKey) {
+  var sel = document.getElementById('fld-event');
+  sel.value = evKey;
+  onEventChange();
+  setTimeout(scrollToRegister, 80);
+}
+
+// ─────────────────────────────────────────────────────────────
+//  EVENT DROPDOWN CHANGE
+// ─────────────────────────────────────────────────────────────
+function onEventChange() {
+  var val  = document.getElementById('fld-event').value;
+  var ts   = document.getElementById('teamSection');
+  var amt  = document.getElementById('payAmount');
+  var lbl  = document.getElementById('eventLabel');
+
   if (val && FEE_MAP[val]) {
-    const d = FEE_MAP[val];
+    var d = FEE_MAP[val];
     amt.textContent = d.fee;
-    evLabel.textContent = val.split(' - ')[0];
-    ts.classList.toggle('active', d.isTeam);
+    lbl.textContent = d.label;
+    if (d.isTeam) {
+      ts.classList.add('show');
+    } else {
+      ts.classList.remove('show');
+    }
   } else {
-    amt.textContent = '₹0'; evLabel.textContent = 'Select an event above';
-    ts.classList.remove('active');
+    amt.textContent = 'Rs.0';
+    lbl.textContent = 'Select an event above';
+    ts.classList.remove('show');
   }
 }
 
-function selectPay(m) {
+// ─────────────────────────────────────────────────────────────
+//  PAYMENT METHOD TOGGLE
+// ─────────────────────────────────────────────────────────────
+function setPay(m) {
   currentPay = m;
-  ['upi','screenshot','cash'].forEach(x => {
-    document.getElementById('btn-'+x).classList.remove('active');
-    document.getElementById('pg-'+x).classList.remove('active');
+  ['upi', 'screenshot', 'cash'].forEach(function(x) {
+    document.getElementById('pbtn-' + x).classList.remove('active');
+    document.getElementById('panel-' + x).classList.remove('show');
   });
-  document.getElementById('btn-'+m).classList.add('active');
-  document.getElementById('pg-'+m).classList.add('active');
+  document.getElementById('pbtn-' + m).classList.add('active');
+  document.getElementById('panel-' + m).classList.add('show');
 }
 
-function handleFile(e) {
-  const f = e.target.files[0];
-  if (f) document.getElementById('fileName').textContent = '✅ ' + f.name;
+// ─────────────────────────────────────────────────────────────
+//  FILE CHANGE
+// ─────────────────────────────────────────────────────────────
+function onFileChange(e) {
+  var f = e.target.files[0];
+  if (!f) return;
+  if (f.size > 5 * 1024 * 1024) {
+    showToast('File too large — max 5 MB', 'err');
+    e.target.value = '';
+    return;
+  }
+  document.getElementById('fileName').textContent = 'Selected: ' + f.name;
 }
 
-function copyUPI(btn) {
-  navigator.clipboard.writeText('7994699455@jio').then(() => {
-    btn.innerHTML = '<i class="fas fa-check"></i> COPIED!'; btn.classList.add('copied');
-    setTimeout(() => { btn.innerHTML='<i class="fas fa-copy"></i> COPY'; btn.classList.remove('copied'); }, 2000);
-  });
+// ─────────────────────────────────────────────────────────────
+//  COPY UPI
+// ─────────────────────────────────────────────────────────────
+function copyUPI() {
+  var upi = '7994699455@jio';
+  var btn = document.getElementById('copyBtn');
+  function onCopied() {
+    btn.innerHTML = '<i class="fas fa-check"></i> COPIED!';
+    btn.style.color = '#00ff88';
+    btn.style.borderColor = '#00ff88';
+    showToast('UPI ID copied!', 'ok');
+    setTimeout(function() {
+      btn.innerHTML = '<i class="fas fa-copy"></i> COPY';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 2000);
+  }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(upi).then(onCopied).catch(function() { fallbackCopy(upi, onCopied); });
+  } else {
+    fallbackCopy(upi, onCopied);
+  }
+}
+function fallbackCopy(text, cb) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  try { document.execCommand('copy'); cb(); } catch(e) {}
+  document.body.removeChild(ta);
 }
 
-function showToast(msg, type='success') {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.className = 'toast show ' + type;
-  setTimeout(() => t.classList.remove('show'), 3500);
+// ─────────────────────────────────────────────────────────────
+//  TOAST
+// ─────────────────────────────────────────────────────────────
+function showToast(msg, type) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + (type || 'ok');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function() { t.classList.remove('show'); }, 3500);
 }
 
-function setErr(id, show) {
-  const el = document.getElementById(id);
-  const errEl = document.getElementById('e-'+id);
-  if (el) el.classList.toggle('err', show);
-  if (errEl) errEl.classList.toggle('show-err', show);
+// ─────────────────────────────────────────────────────────────
+//  VALIDATION
+// ─────────────────────────────────────────────────────────────
+function setFieldErr(inputId, errId, hasErr) {
+  var inp = document.getElementById(inputId);
+  var err = document.getElementById(errId);
+  if (inp) inp.classList.toggle('err', hasErr);
+  if (err) err.classList.toggle('show', hasErr);
 }
 
 function validate() {
-  let ok = true;
-  const name = document.getElementById('fullName').value.trim();
-  setErr('fullName', !name || name.length < 2); if (!name || name.length < 2) ok = false;
+  var ok = true;
 
-  const phone = document.getElementById('contactNumber').value.replace(/\D/g,'');
-  setErr('contactNumber', phone.length < 10); if (phone.length < 10) ok = false;
+  var name = document.getElementById('fld-name').value.trim();
+  var nameErr = !name || name.length < 2;
+  setFieldErr('fld-name', 'err-name', nameErr);
+  if (nameErr) ok = false;
 
-  const email = document.getElementById('emailId').value;
-  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  setErr('emailId', !validEmail); if (!validEmail) ok = false;
+  var phone = document.getElementById('fld-phone').value.replace(/\D/g, '');
+  var phoneErr = phone.length < 10;
+  setFieldErr('fld-phone', 'err-phone', phoneErr);
+  if (phoneErr) ok = false;
 
-  const sem = document.getElementById('semDept').value;
-  setErr('semDept', !sem); if (!sem) ok = false;
+  var email = document.getElementById('fld-email').value.trim();
+  var emailErr = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  setFieldErr('fld-email', 'err-email', emailErr);
+  if (emailErr) ok = false;
 
-  const ev = document.getElementById('eventSelect').value;
-  setErr('eventSelect', !ev); if (!ev) ok = false;
+  var sem = document.getElementById('fld-sem').value;
+  var semErr = !sem;
+  setFieldErr('fld-sem', 'err-sem', semErr);
+  if (semErr) ok = false;
+
+  var ev = document.getElementById('fld-event').value;
+  var evErr = !ev;
+  setFieldErr('fld-event', 'err-event', evErr);
+  if (evErr) ok = false;
 
   if (ev && FEE_MAP[ev] && FEE_MAP[ev].isTeam) {
-    ['teamName','leaderName','player2','player3','player4'].forEach(id => {
-      const v = document.getElementById(id).value.trim();
-      setErr(id, !v); if (!v) ok = false;
+    ['fld-teamname','fld-leader','fld-p2','fld-p3','fld-p4'].forEach(function(fid) {
+      var eid = 'err-' + fid.replace('fld-', '');
+      var v = document.getElementById(fid).value.trim();
+      setFieldErr(fid, eid, !v);
+      if (!v) ok = false;
     });
   }
+
   if (currentPay === 'upi') {
-    const txn = document.getElementById('transactionId').value.trim();
-    setErr('transactionId', !txn); if (!txn) ok = false;
+    var txn = document.getElementById('fld-txn').value.trim();
+    setFieldErr('fld-txn', 'err-txn', !txn);
+    if (!txn) ok = false;
   }
+
   return ok;
 }
 
-document.getElementById('regForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
+// ─────────────────────────────────────────────────────────────
+//  SUBMIT
+// ─────────────────────────────────────────────────────────────
+function submitForm() {
   if (!validate()) {
-    showToast('Please fill all required fields correctly', 'error');
+    showToast('Please fill all required fields correctly', 'err');
     return;
   }
-  const btn = document.getElementById('submitBtn');
-  btn.innerHTML = '<div class="spinner"></div> Submitting...';
+
+  var btn = document.getElementById('submitBtn');
+  btn.innerHTML = '<span class="spinner"></span> Submitting...';
   btn.disabled = true;
-  document.getElementById('apiBanner').classList.remove('show');
 
-  try {
-    const ev = document.getElementById('eventSelect').value;
-    const isTeam = FEE_MAP[ev] && FEE_MAP[ev].isTeam;
-    const fd = new FormData();
-    fd.append('participant_name', document.getElementById('fullName').value.trim());
-    fd.append('semester_department', document.getElementById('semDept').value);
-    fd.append('event_name', ev);
-    fd.append('contact_number', document.getElementById('contactNumber').value.trim());
-    fd.append('email', document.getElementById('emailId').value.trim());
-    fd.append('payment_method', currentPay);
-    fd.append('transaction_id', document.getElementById('transactionId').value.trim());
-    if (isTeam) {
-      fd.append('team_name', document.getElementById('teamName').value.trim());
-      const members = [
-        document.getElementById('leaderName').value.trim(),
-        document.getElementById('player2').value.trim(),
-        document.getElementById('player3').value.trim(),
-        document.getElementById('player4').value.trim()
-      ].filter(Boolean).join(', ');
-      fd.append('team_members', members);
-    }
-    const file = document.getElementById('screenshotFile').files[0];
-    if (file && currentPay === 'screenshot') fd.append('screenshot', file);
+  var banner = document.getElementById('apiBanner');
+  banner.classList.remove('show');
 
-    const res = await fetch(API_BASE + '/registrations', { method:'POST', body: fd });
-    const data = await res.json();
+  var ev     = document.getElementById('fld-event').value;
+  var isTeam = FEE_MAP[ev] && FEE_MAP[ev].isTeam;
+  var fd     = new FormData();
 
-    if (!res.ok || !data.success) throw new Error(data.message || 'Registration failed');
+  fd.append('participant_name',    document.getElementById('fld-name').value.trim());
+  fd.append('semester_department', document.getElementById('fld-sem').value);
+  fd.append('event_name',          ev);
+  fd.append('contact_number',      document.getElementById('fld-phone').value.trim());
+  fd.append('email',               document.getElementById('fld-email').value.trim().toLowerCase());
+  fd.append('payment_method',      currentPay);
+  fd.append('transaction_id',      document.getElementById('fld-txn').value.trim());
 
-    document.getElementById('regIdDisplay').textContent = '🎫 Registration ID: ' + data.reg_id;
-    document.getElementById('successOverlay').classList.add('show');
-    document.getElementById('regForm').reset();
-    document.getElementById('teamSection').classList.remove('active');
-    document.getElementById('payAmount').textContent = '₹0';
-    document.getElementById('fileName').textContent = '';
-    selectPay('upi');
-
-  } catch (err) {
-    const banner = document.getElementById('apiBanner');
-    banner.textContent = '❌ ' + (err.message || 'Registration failed. Please try again.');
-    banner.classList.add('show');
-    showToast('Registration failed: ' + err.message, 'error');
-  } finally {
-    btn.innerHTML = '<i class="fas fa-check-circle"></i> CONFIRM REGISTRATION';
-    btn.disabled = false;
+  if (isTeam) {
+    fd.append('team_name', document.getElementById('fld-teamname').value.trim());
+    var members = [
+      document.getElementById('fld-leader').value.trim(),
+      document.getElementById('fld-p2').value.trim(),
+      document.getElementById('fld-p3').value.trim(),
+      document.getElementById('fld-p4').value.trim()
+    ].filter(Boolean).join(', ');
+    fd.append('team_members', members);
   }
-});
 
-document.getElementById('contactNumber').addEventListener('input', function() {
-  this.value = this.value.replace(/[^0-9+]/g,'');
-});
+  var fileInput = document.getElementById('fld-file');
+  if (fileInput.files.length && currentPay === 'screenshot') {
+    fd.append('screenshot', fileInput.files[0]);
+  }
 
-// Drag drop
-const dz = document.getElementById('dropZone');
-if (dz) {
-  dz.addEventListener('dragover', e => { e.preventDefault(); dz.style.borderColor='var(--neon-cyan)'; });
-  dz.addEventListener('dragleave', () => dz.style.borderColor='');
-  dz.addEventListener('drop', e => {
-    e.preventDefault(); dz.style.borderColor=
+  fetch(API_BASE + '/registrations', { method: 'POST', body: fd })
+    .then(function(res) { return res.json().then(function(data) { return { ok: res.ok, data: data }; }); })
+    .then(function(r) {
+      if (!r.ok || !r.data.success) throw new Error(r.data.message || 'Registration failed');
+      document.getElementById('regIdDisplay').textContent = 'Registration ID: ' + r.data.reg_id;
+      document.getElementById('successOverlay').classList.add('show');
+      resetForm();
+    })
+    .catch(function(err) {
+      banner.textContent = 'Error: ' + (err.message || 'Registration failed. Please try again.');
+      banner.classList.add('show');
+      showToast(err.message || 'Registration failed', 'err');
+    })
+    .finally(function() {
+      btn.innerHTML = '<i class="fas fa-check-circle"></i> CONFIRM REGISTRATION';
+      btn.disabled = false;
+    });
+}
+
+// ─────────────────────────────────────────────────────────────
+//  RESET FORM
+// ─────────────────────────────────────────────────────────────
+function resetForm() {
+  document.getElementById('regForm').reset();
+  document.getElementById('teamSection').classList.remove('show');
+  document.getElementById('payAmount').textContent = 'Rs.0';
+  document.getElementById('eventLabel').textContent = 'Select an event above';
+  document.getElementById('fileName').textContent = '';
+  setPay('upi');
+}
+
+// ─────────────────────────────────────────────────────────────
+//  CLOSE SUCCESS
+// ─────────────────────────────────────────────────────────────
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
