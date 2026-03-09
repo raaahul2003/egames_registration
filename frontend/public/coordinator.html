@@ -305,7 +305,9 @@ tr:hover td{background:rgba(255,255,255,0.02);color:var(--text);}
 
 <script>
   
-const API_BASE = 'https://egames-registration.onrender.com/api';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'
+  : 'https://egames-registration.onrender.com/api';
     
 // window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
 //   ? 'http://localhost:5000/api'
@@ -367,7 +369,7 @@ function doLogout() {
   location.reload();
 }
 
-function authHeaders(withBody = false) {
+function authHeaders(withBody=false) {
   const h = { 'Authorization': 'Bearer ' + token };
   if (withBody) h['Content-Type'] = 'application/json';
   return h;

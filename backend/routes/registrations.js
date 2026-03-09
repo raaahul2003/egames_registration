@@ -213,7 +213,6 @@ router.get('/export/excel', authMiddleware, async (req, res) => {
   }
 });
 
-
 // ── GET /api/registrations/:id  (coordinator — single) ──────
 router.get('/:id', authMiddleware, async (req, res) => {
   try {
@@ -276,5 +275,4 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error' });
   }
 });
-
 module.exports = router;
