@@ -305,9 +305,7 @@ tr:hover td{background:rgba(255,255,255,0.02);color:var(--text);}
 
 <script>
   
-const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? 'http://localhost:5000/api'
-  : (window.location.origin + '/api');
+const API_BASE = 'https://egames-registration.onrender.com/api';
     
 // window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
 //   ? 'http://localhost:5000/api'
@@ -369,8 +367,10 @@ function doLogout() {
   location.reload();
 }
 
-function authHeaders() {
-  return { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' };
+function authHeaders(withBody = false) {
+  const h = { 'Authorization': 'Bearer ' + token };
+  if (withBody) h['Content-Type'] = 'application/json';
+  return h;
 }
 
 // ── NAVIGATION ────────────────────────────────────────────
@@ -507,7 +507,7 @@ async function renderQuickStats() {
 async function quickVerify(id, status) {
   try {
     const res = await fetch(`${API_BASE}/registrations/${id}/verify`, {
-      method: 'PATCH', headers: authHeaders(),
+      method: 'PATCH', headers: authHeaders(true),
       body: JSON.stringify({ status })
     });
     const data = await res.json();
@@ -640,7 +640,7 @@ async function addCoordinator() {
 
   try {
     const res = await fetch(API_BASE + '/auth/create-coordinator', {
-      method: 'POST', headers: authHeaders(),
+      method: 'POST', headers: authHeaders(true),
       body: JSON.stringify({ name, email, password: pass, role })
     });
     const data = await res.json();
