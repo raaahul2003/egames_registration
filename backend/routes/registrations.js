@@ -10,9 +10,12 @@ const path     = require('path');
 const router = express.Router();
 
 const FEE_MAP = {
-  'Mini Militia - Team of 4 - ₹80':  80,
-  'eFootball - Individual - ₹50':    50,
-  'PUBG Mobile - Squad - ₹100':      100
+  'Mini Militia - Team of 4 - Rs80':  80,
+  'Mini Militia - Team of 4 - Rs.80': 80,
+  'eFootball - Individual - Rs50':    50,
+  'eFootball - Individual - Rs.50':   50,
+  'PUBG Mobile - Squad - Rs100':      100,
+  'PUBG Mobile - Squad - Rs.100':     100
 };
 
 function genRegId() {
@@ -116,17 +119,19 @@ router.get('/', authMiddleware, async (req, res) => {
       params.push(s, s, s, s);
     }
 
-    const [rows] = await pool.execute(
+    const limitInt  = parseInt(limit);
+    const offsetInt = parseInt(offset);
+    const [rows] = await pool.query(
       `SELECT r.*, c.name AS verified_by_name
        FROM registrations r
        LEFT JOIN coordinators c ON r.verified_by = c.id
        ${where}
        ORDER BY r.registration_date DESC
-       LIMIT ? OFFSET ?`,
-      [...params, parseInt(limit), offset]
+       LIMIT ${limitInt} OFFSET ${offsetInt}`,
+      params
     );
 
-    const [[{ total }]] = await pool.execute(
+    const [[{ total }]] = await pool.query(
       `SELECT COUNT(*) AS total FROM registrations ${where}`, params
     );
 
@@ -157,6 +162,7 @@ router.get('/stats', authMiddleware, async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error' });
   }
 });
+
 
 // ── GET /api/registrations/export/excel  (coordinator) ──────
 router.get('/export/excel', authMiddleware, async (req, res) => {
