@@ -305,7 +305,9 @@ tr:hover td{background:rgba(255,255,255,0.02);color:var(--text);}
 
 <script>
   
-const API_BASE = 'https://egames-registration.onrender.com/api';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'
+  : (window.location.origin + '/api');
     
 // window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
 //   ? 'http://localhost:5000/api'
@@ -388,16 +390,25 @@ async function loadRegistrations() {
   document.getElementById('regTableBody').innerHTML = '';
 
   try {
-    const res = await fetch(API_BASE + '/registrations?limit=500', { method:'GET', headers: {'Authorization':'Bearer '+token} });
+    const res = await fetch(API_BASE + '/registrations?limit=500', {
+      method: 'GET',
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
     if (res.status === 401 || res.status === 403) { doLogout(); return; }
-    let data; try{data=await res.json();}catch(e){throw new Error('Bad server response');}
-    if(!data.success) throw new Error(data.message||'API error');
-    allRegistrations = Array.isArray(data.registrations)?data.registrations:[];
-    console.log('Loaded:',allRegistrations.length);
+
+    let data;
+    try { data = await res.json(); }
+    catch(e) { throw new Error('Server returned invalid response. Check backend logs.'); }
+
+    if (!data.success) throw new Error(data.message || 'API returned error');
+    allRegistrations = Array.isArray(data.registrations) ? data.registrations : [];
+    console.log('✅ Registrations loaded:', allRegistrations.length);
     renderQuickStats();
     renderTable(allRegistrations);
   } catch (err) {
-    showToast('Failed to load registrations: ' + err.message, 'error');
+    console.error('loadRegistrations failed:', err);
+    showToast('Failed to load: ' + err.message, 'error');
+    document.getElementById('emptyEl').style.display = 'block';
   } finally {
     document.getElementById('loadingEl').style.display = 'none';
   }
@@ -462,12 +473,15 @@ function filterTable() {
 
 async function renderQuickStats() {
   try {
-    const r = await fetch(API_BASE+'/registrations/stats',{method:'GET',headers:{'Authorization':'Bearer '+token}});
-    const d = await r.json(); const s = d.stats||{};
-    const total    = s.total!==undefined    ? s.total    : allRegistrations.length;
-    const pending  = s.pending!==undefined  ? s.pending  : allRegistrations.filter(r=>r.payment_status==='pending').length;
-    const verified = s.verified!==undefined ? s.verified : allRegistrations.filter(r=>r.payment_status==='verified').length;
-    const revenue  = s.total_revenue!==undefined ? s.total_revenue : allRegistrations.reduce((x,r)=>x+(r.event_fee||0),0);
+    const res = await fetch(API_BASE + '/registrations/stats', {
+      method: 'GET', headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const data = await res.json();
+    const s = data.stats || {};
+    const total    = s.total    !== undefined ? s.total    : allRegistrations.length;
+    const pending  = s.pending  !== undefined ? s.pending  : allRegistrations.filter(r=>r.payment_status==='pending').length;
+    const verified = s.verified !== undefined ? s.verified : allRegistrations.filter(r=>r.payment_status==='verified').length;
+    const revenue  = s.total_revenue !== undefined ? s.total_revenue : allRegistrations.reduce((sum,r)=>sum+(r.event_fee||0),0);
     document.getElementById('quickStats').innerHTML = `
       <div class="stat-card" style="--sc-color:var(--neon-cyan);--sc-glow:rgba(0,245,255,0.3)">
         <div class="stat-num">${total}</div><div class="stat-label">Total Registrations</div>
@@ -484,8 +498,9 @@ async function renderQuickStats() {
       <div class="stat-card" style="--sc-color:var(--neon-orange);--sc-glow:rgba(255,107,0,0.3)">
         <div class="stat-num">₹${revenue}</div><div class="stat-label">Total Revenue</div>
         <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
-      </div>`;
-  } catch(e){console.error('quickStats error:',e);}
+      </div>
+    `;
+  } catch(e) { console.error('renderQuickStats error:', e); }
 }
 
 // ── QUICK VERIFY ──────────────────────────────────────────
@@ -553,7 +568,7 @@ async function modalVerify(id, status) {
 // ── STATS PAGE ────────────────────────────────────────────
 async function loadStats() {
   try {
-    const res = await fetch(API_BASE + '/registrations/stats', { method:'GET', headers: {'Authorization':'Bearer '+token} });
+    const res = await fetch(API_BASE + '/registrations/stats', { method:'GET', headers: { 'Authorization': 'Bearer ' + token } });
     const data = await res.json();
     const s = data.stats;
 
@@ -601,7 +616,7 @@ async function loadStats() {
 // ── COORDINATORS ──────────────────────────────────────────
 async function loadCoordinators() {
   try {
-    const res = await fetch(API_BASE + '/auth/coordinators', { method:'GET', headers: {'Authorization':'Bearer '+token} });
+    const res = await fetch(API_BASE + '/auth/coordinators', { method:'GET', headers: { 'Authorization': 'Bearer ' + token } });
     const data = await res.json();
     const tbody = document.getElementById('coordTableBody');
     tbody.innerHTML = (data.coordinators || []).map(c => `
@@ -641,7 +656,7 @@ async function addCoordinator() {
 async function deleteCoord(id) {
   if (!confirm('Remove this coordinator?')) return;
   try {
-    const res = await fetch(API_BASE + '/auth/coordinators/' + id, { method:'DELETE', headers: {'Authorization':'Bearer '+token} });
+    const res = await fetch(API_BASE + '/auth/coordinators/' + id, { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + token } });
     const data = await res.json();
     if (!data.success) throw new Error(data.message);
     showToast('Coordinator removed', 'success');
