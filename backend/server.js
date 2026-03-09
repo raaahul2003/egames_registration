@@ -14,25 +14,17 @@ const app  = express();
 const PORT = process.env.PORT || 5000;
 
 // ── CORS ────────────────────────────────────────────────────
-app.use(cors({
-  origin: function(origin, callback) {
-    // Allow requests with no origin (mobile apps, curl, Postman)
-    if (!origin) return callback(null, true);
-    const allowed = [
-      'https://egames-registration-1.onrender.com',
-      'https://egames-registration.onrender.com',
-      process.env.FRONTEND_URL,
-      'http://localhost:3000',
-      'http://localhost:5000',
-      'http://127.0.0.1:5500'
-    ].filter(Boolean);
-    if (allowed.some(u => origin.startsWith(u))) return callback(null, true);
-    return callback(null, true); // Allow all during development — tighten later
-  },
-  credentials: true,
-  methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
-  allowedHeaders: ['Content-Type','Authorization']
-}));
+
+app.use(cors());
+
+// app.use(cors({
+//   origin: [
+//     process.env.FRONTEND_URL || 'http://localhost:3000',
+//     'http://localhost:5000',
+//     'http://127.0.0.1:5500'  // Live Server (VS Code)
+//   ],
+//   credentials: true
+// }));
 
 // ── Body Parsers ─────────────────────────────────────────────
 app.use(express.json({ limit: '10mb' }));
@@ -42,11 +34,13 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/uploads', express.static(path.join(__dirname, process.env.UPLOAD_DIR || 'uploads')));
 
 // ── Rate Limiting ────────────────────────────────────────────
+
 const registrationLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 min
-  max: 10, // max 10 registrations per IP per window
-  message: { success: false, message: 'Too many requests. Please try again later.' }
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 100, // allow many attempts
 });
+
+app.use("/api/registrations", registrationLimiter);
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -100,42 +94,15 @@ async function seedAdmin() {
   }
 }
 
-// ── Start Server (with DB retry) ─────────────────────────────
-async function start(retries = 5) {
-  for (let i = 1; i <= retries; i++) {
-    try {
-      console.log(`🔌 Connecting to database (attempt ${i}/${retries})...`);
-      await initDB();
-      await seedAdmin();
-      break; // success
-    } catch (err) {
-      console.error(`❌ DB connection failed (attempt ${i}): ${err.message}`);
-      if (i === retries) {
-        console.error('💀 Could not connect to database after', retries, 'attempts. Exiting.');
-        process.exit(1);
-      }
-      const wait = i * 3000; // 3s, 6s, 9s, 12s backoff
-      console.log(`⏳ Retrying in ${wait / 1000}s...`);
-      await new Promise(r => setTimeout(r, wait));
-    }
-  }
-
+// ── Start Server ─────────────────────────────────────────────
+async function start() {
+  await initDB();
+  await seedAdmin();
   app.listen(PORT, () => {
     console.log(`\n🚀 E-Games Server running on port ${PORT}`);
     console.log(`   API  : http://localhost:${PORT}/api`);
     console.log(`   UI   : http://localhost:${PORT}\n`);
   });
-
-  // ── Keep pool alive — ping every 4 minutes ──────────────
-  setInterval(async () => {
-    try {
-      const conn = await pool.getConnection();
-      await conn.ping();
-      conn.release();
-    } catch (e) {
-      console.warn('⚠️  DB keepalive ping failed:', e.message);
-    }
-  }, 4 * 60 * 1000);
 }
 
 start().catch(console.error);
