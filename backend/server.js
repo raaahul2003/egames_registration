@@ -98,7 +98,19 @@ async function seedAdmin() {
 async function start() {
   await initDB();
   await seedAdmin();
-  app.listen(PORT, () => {
+  
+// ── DEBUG: test DB connection ─────────────────────────────
+app.get('/api/debug', async (req, res) => {
+  try {
+    const { pool } = require('./config/db');
+    const [[row]] = await pool.query('SELECT COUNT(*) AS cnt FROM registrations');
+    res.json({ success: true, db: 'connected', registrations: row.cnt });
+  } catch (err) {
+    res.json({ success: false, error: err.message, code: err.code });
+  }
+});
+
+app.listen(PORT, () => {
     console.log(`\n🚀 E-Games Server running on port ${PORT}`);
     console.log(`   API  : http://localhost:${PORT}/api`);
     console.log(`   UI   : http://localhost:${PORT}\n`);

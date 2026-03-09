@@ -105,40 +105,49 @@ router.post('/', upload.single('screenshot'), async (req, res) => {
 // ── GET /api/registrations  (coordinator — list all) ────────
 router.get('/', authMiddleware, async (req, res) => {
   try {
-    const { event, status, search, page = 1, limit = 50 } = req.query;
-    const offset = (parseInt(page) - 1) * parseInt(limit);
+    const event  = req.query.event  || '';
+    const status = req.query.status || '';
+    const search = req.query.search || '';
+    const page   = Math.max(1, parseInt(req.query.page)  || 1);
+    const limit  = Math.min(1000, Math.max(1, parseInt(req.query.limit) || 50));
+    const offset = (page - 1) * limit;
 
-    let where = 'WHERE 1=1';
-    const params = [];
+    // Build WHERE clause safely
+    const conditions = [];
+    const params     = [];
 
-    if (event)  { where += ' AND event_name LIKE ?'; params.push(`%${event}%`); }
-    if (status) { where += ' AND payment_status = ?'; params.push(status); }
+    if (event)  { conditions.push('r.event_name LIKE ?');    params.push('%' + event + '%'); }
+    if (status) { conditions.push('r.payment_status = ?');   params.push(status); }
     if (search) {
-      where += ' AND (participant_name LIKE ? OR contact_number LIKE ? OR reg_id LIKE ? OR email LIKE ?)';
-      const s = `%${search}%`;
+      conditions.push('(r.participant_name LIKE ? OR r.contact_number LIKE ? OR r.reg_id LIKE ? OR r.email LIKE ?)');
+      const s = '%' + search + '%';
       params.push(s, s, s, s);
     }
 
-    const limitInt  = parseInt(limit);
-    const offsetInt = parseInt(offset);
-    const [rows] = await pool.query(
-      `SELECT r.*, c.name AS verified_by_name
-       FROM registrations r
-       LEFT JOIN coordinators c ON r.verified_by = c.id
-       ${where}
-       ORDER BY r.registration_date DESC
-       LIMIT ${limitInt} OFFSET ${offsetInt}`,
-      params
-    );
+    const where = conditions.length ? 'WHERE ' + conditions.join(' AND ') : '';
 
-    const [[{ total }]] = await pool.query(
-      `SELECT COUNT(*) AS total FROM registrations ${where}`, params
-    );
+    // Use string interpolation for LIMIT/OFFSET (not placeholders)
+    const sql = `SELECT r.id, r.reg_id, r.participant_name, r.semester_department,
+                        r.event_name, r.event_fee, r.team_name, r.team_members,
+                        r.contact_number, r.email, r.payment_method, r.transaction_id,
+                        r.screenshot_path, r.payment_status, r.verified_by,
+                        r.verified_at, r.notes, r.registration_date,
+                        c.name AS verified_by_name
+                 FROM registrations r
+                 LEFT JOIN coordinators c ON r.verified_by = c.id
+                 ${where}
+                 ORDER BY r.registration_date DESC
+                 LIMIT ${limit} OFFSET ${offset}`;
 
-    res.json({ success: true, registrations: rows, total, page: parseInt(page), limit: parseInt(limit) });
+    const countSql = `SELECT COUNT(*) AS total FROM registrations r ${where}`;
+
+    const [rows]          = await pool.query(sql, params);
+    const [[{ total }]]   = await pool.query(countSql, params);
+
+    res.json({ success: true, registrations: rows, total, page, limit });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: 'Server error' });
+    console.error('GET /registrations error:', err.message, err.stack);
+    res.status(500).json({ success: false, message: err.message || 'Server error' });
   }
 });
 
@@ -159,7 +168,7 @@ router.get('/stats', authMiddleware, async (req, res) => {
     `);
     res.json({ success: true, stats: totals });
   } catch (err) {
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: err.message || 'Server error' });
   }
 });
 
@@ -233,7 +242,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
       return res.status(404).json({ success: false, message: 'Registration not found' });
     res.json({ success: true, registration: rows[0] });
   } catch (err) {
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: err.message || 'Server error' });
   }
 });
 
@@ -265,7 +274,7 @@ router.patch('/:id/verify', authMiddleware, async (req, res) => {
     res.json({ success: true, message: `Payment ${status} successfully` });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: err.message || 'Server error' });
   }
 });
 
@@ -278,7 +287,7 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     await pool.execute('DELETE FROM registrations WHERE id = ? OR reg_id = ?', [req.params.id, req.params.id]);
     res.json({ success: true, message: 'Registration deleted' });
   } catch (err) {
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: err.message || 'Server error' });
   }
 });
 module.exports = router;
