@@ -122,6 +122,7 @@ section{position:relative;z-index:1;padding:60px 5%;}
 .pay-panel{display:none;}
 .pay-panel.show{display:block;animation:slideDown 0.3s ease;}
 .file-area{border:2px dashed rgba(0,245,255,0.2);border-radius:8px;padding:24px;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--surface);}
+.file-area.err{border-color:#ff4757;}
 .file-area:hover{border-color:var(--neon-cyan);}
 .file-area i{font-size:2rem;color:var(--neon-cyan);margin-bottom:8px;display:block;}
 .file-area p{font-size:0.85rem;color:var(--text-dim);}
@@ -241,7 +242,7 @@ footer{position:relative;z-index:1;background:var(--card-bg);border-top:1px soli
   </div>
   <div class="hero-stats">
     <div><div class="stat-num">3</div><div class="stat-label">Events</div></div>
-    <div><div class="stat-num">₹499</div><div class="stat-label">Prize Pool</div></div>
+    <div><div class="stat-num">🏆</div><div class="stat-label">Cash Prize</div></div>
     <div><div class="stat-num">50+</div><div class="stat-label">Participants</div></div>
     <div><div class="stat-num">1</div><div class="stat-label">Champion</div></div>
   </div>
@@ -353,51 +354,21 @@ footer{position:relative;z-index:1;background:var(--card-bg);border-top:1px soli
             <input type="email" id="fld-email" placeholder="yourname@email.com">
             <div class="err-msg" id="err-email">Enter a valid email address</div>
           </div>
-         <div class="form-group">
-          <label>Semester &amp; Department <span class="req">*</span></label>
-          <select id="fld-sem">
-            <option value="">Select Semester &amp; Dept</option>
-
-            <option>S8 CSE</option>
-            <option>S8 EEE</option>
-            <option>S8 ECE</option>
-            <option>S8 CE</option>
-            <option>S8 MCT</option>
-            <option>S8 CHE</option>
-
-            <option>S6 CSE</option>
-            <option>S6 CC</option>
-            <option>S6 AI</option>
-            <option>S6 CHE</option>
-            <option>S6 CE</option>
-            <option>S6 MCT</option>
-            <option>S6 ECE</option>
-
-            <option>S4 CSE</option>
-            <option>S4 CC</option>
-            <option>S4 AI</option>
-            <option>S4 ECE</option>
-
-            <option>S2 CSE</option>
-            <option>S2 CC</option>
-            <option>S2 AI</option>
-
-            <option>S2 POLY CSE</option>
-            <option>S2 POLY EEE</option>
-            <option>S2 POLY ME</option>
-            <option>S2 POLY CE</option>
-            <option>S2 POLY ECE</option>
-
-            <option>S4 POLY CSE</option>
-            <option>S4 POLY EEE</option>
-            <option>S4 POLY ME</option>
-            <option>S4 POLY CE</option>
-            <option>S4 POLY ECE</option>
-            <option>S4 POLY AU</option>
-
-          </select>
-          <div class="err-msg" id="err-sem">Please select your semester &amp; department</div>
-        </div>
+          <div class="form-group">
+            <label>Semester &amp; Department <span class="req">*</span></label>
+            <select id="fld-sem">
+              <option value="">Select Semester &amp; Dept</option>
+              <option>S1 CSE</option><option>S1 ECE</option><option>S1 MECH</option><option>S1 CIVIL</option><option>S1 EEE</option>
+              <option>S2 CSE</option><option>S2 ECE</option><option>S2 MECH</option>
+              <option>S3 CSE</option><option>S3 ECE</option><option>S3 MECH</option><option>S3 CIVIL</option><option>S3 EEE</option>
+              <option>S4 CSE</option><option>S4 ECE</option><option>S4 MECH</option>
+              <option>S5 CSE</option><option>S5 ECE</option><option>S5 MECH</option><option>S5 CIVIL</option><option>S5 EEE</option>
+              <option>S6 CSE</option><option>S6 ECE</option><option>S6 MECH</option>
+              <option>S7 CSE</option><option>S7 ECE</option><option>S7 MECH</option>
+              <option>S8 CSE</option><option>S8 ECE</option><option>S8 MECH</option>
+            </select>
+            <div class="err-msg" id="err-sem">Please select your semester &amp; department</div>
+          </div>
         </div>
 
         <!-- EVENT SELECTION -->
@@ -488,13 +459,14 @@ footer{position:relative;z-index:1;background:var(--card-bg);border-top:1px soli
           <!-- Screenshot panel -->
           <div class="pay-panel show" id="panel-screenshot">
             <div class="form-group">
-              <label>Upload Payment Screenshot</label>
+              <label>Upload Payment Screenshot <span style="color:var(--neon-cyan)">*</span></label>
               <div class="file-area" id="dropZone" onclick="document.getElementById('fld-file').click()">
                 <input type="file" id="fld-file" accept="image/*" style="display:none" onchange="onFileChange(event)">
                 <i class="fas fa-cloud-upload-alt"></i>
                 <p>Click to upload or drag &amp; drop<br><small>PNG, JPG (Max 5MB)</small></p>
                 <div class="file-name" id="fileName"></div>
               </div>
+              <div class="err-msg" id="err-file">Please upload your payment screenshot</div>
             </div>
           </div>
 
@@ -672,6 +644,7 @@ function onFileChange(e) {
     return;
   }
   document.getElementById('fileName').textContent = 'Selected: ' + f.name;
+  setFieldErr('dropZone', 'err-file', false);
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -737,12 +710,12 @@ function validate() {
   if (nameErr) ok = false;
 
   var phone = document.getElementById('fld-phone').value.replace(/\D/g, '');
-  var phoneErr = phone.length < 10;
+  var phoneErr = phone.length !== 10;
   setFieldErr('fld-phone', 'err-phone', phoneErr);
   if (phoneErr) ok = false;
 
   var email = document.getElementById('fld-email').value.trim();
-  var emailErr = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  var emailErr = !/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
   setFieldErr('fld-email', 'err-email', emailErr);
   if (emailErr) ok = false;
 
@@ -764,6 +737,13 @@ function validate() {
       if (!v) ok = false;
     });
   }
+  if (currentPay === 'screenshot') {
+    var fileInput2 = document.getElementById('fld-file');
+    var fileErr = !fileInput2.files.length;
+    setFieldErr('dropZone', 'err-file', fileErr);
+    if (fileErr) ok = false;
+  }
+
   return ok;
 }
 
